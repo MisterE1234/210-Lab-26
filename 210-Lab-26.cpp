@@ -13,24 +13,21 @@
 using namespace std;
 using namespace std::chrono;
 
-int SZ_CODES = 20000;
+int SZ_CODES = 20000; int AMNT_SIM = 15;
 
-void displayArr(int arr[][2], string race){
-
-        cout <<  right << setw(8) << race << ": " << setw(8) << 
-        arr[0][0] << setw(8) <<arr[1][0]  << setw(8) << arr[2][0]  << endl;
-    
-}
+//Prototype functions:
+void displayArr(int [][2], string );
 
 
 int main() {
 
-    
+    int currentSim = 0;
     string tempCode;
     int durVect;
     int durList;
     int durSet;
     string fileArr[SZ_CODES];
+    
 
     //Declaring a 3d array one side hold the times for each race, the second side holds the accumulator sums of each operation:
     int raceTimes[4][2] = {0};
@@ -59,7 +56,9 @@ int main() {
     }
 
     iFile.close();
+    
 
+    while(currentSim < AMNT_SIM){
     //Getting the time for the start of the timer:
     auto start = high_resolution_clock::now();
 
@@ -116,17 +115,12 @@ int main() {
     raceTimes[2][0] = duration.count();
     raceTimes[2][1] += duration.count();
     
-
-    
-
-
-    
-
-
     //Displaying the times for reading:
     cout <<  right << setw(8) << "Reading:" << setw(8) << 
     raceTimes[0][0] << setw(8) <<raceTimes[1][0]  << setw(8) << raceTimes[2][0]  << endl;
 
+    currentSim++;
+    }
     
     
     
@@ -269,6 +263,12 @@ int main() {
     return 0;
 }
 
+void displayArr(int arr[][2], string race){
+
+        cout <<  right << setw(8) << race << ": " << setw(8) << 
+        arr[0][0] << setw(8) <<arr[1][0]  << setw(8) << arr[2][0]  << endl;
+    
+}
 /* syntax examples:
 auto start = high_resolution_clock::now()
 auto end = high_resolution_clock::now()
