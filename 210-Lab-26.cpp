@@ -1,6 +1,6 @@
 //COMSC-210|Ethan Aylard|Lab-26
 //IDE Used: Visual Studio Code
-//This Program is to time and an 3d arrayto measure multiple races of different methods of storing information.
+//This Program is to time and an 3d array to measure multiple races of different methods of storing information.
 
 #include <iostream>
 #include <vector>
