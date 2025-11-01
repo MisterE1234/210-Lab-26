@@ -25,6 +25,9 @@ int main() {
     int durSet;
     string fileArr[SZ_CODES];
 
+    //Declaring a 3d array one side hold the times for each race, the second side holds the accumulator sums of each operation:
+    int raceTimes[4][4] = {0};
+
 
 
 
@@ -64,7 +67,8 @@ int main() {
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(end - start);
 
-    durVect = duration.count();
+    //adding the time to the raceTimes array:
+    raceTimes[0][0] += duration.count();
 
 
 
@@ -110,7 +114,8 @@ int main() {
     cout <<  right << setw(8) << "Reading:" << setw(8) << 
     durVect << setw(8) << durList << setw(8) << durSet << endl;
 
-
+    
+    
     
 
     //Sorting:
