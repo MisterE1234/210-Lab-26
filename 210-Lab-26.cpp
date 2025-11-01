@@ -21,6 +21,7 @@ void displayArr(int [][2], string );
 
 int main() {
 
+    string raceNames[4] = {"Reading", "Sorting", "Inserting", "Deleting"};
     int currentSim = 0;
     string tempCode;
     int durVect;
@@ -116,23 +117,23 @@ int main() {
     raceTimes[2][1] += duration.count();
     
     //Displaying the times for reading:
-    cout <<  right << setw(8) << "Reading:" << setw(8) << 
-    raceTimes[0][0] << setw(8) <<raceTimes[1][0]  << setw(8) << raceTimes[2][0]  << endl;
+    displayArr(raceTimes, raceNames[0]);
 
     currentSim++;
     }
     
+    currentSim = 0; //Resetting currentSim for future use.
     
     
 
     //Sorting:
-
-    start = high_resolution_clock::now();
+    while (currentSim < AMNT_SIM){
+    auto start = high_resolution_clock::now();
 
     //Sorting the vector so that the Codes are sorted alphabetically
     sort(vectCode.begin(), vectCode.end());
-    end = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(end - start);
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(end - start);
 
     durVect = duration.count();
 
@@ -158,20 +159,23 @@ int main() {
 
     cout << right << setw(8) << "Sorting:" << setw(8) <<
     durVect << setw(8) << durList << setw(8) << durSet << endl;
+        currentSim++;
+    }
 
-
-
+    currentSim = 0; //Resetting currentSim for future use.
 
     //Inserting:
+
+    while (currentSim < AMNT_SIM){
     string insert_str = "TESTCODE";
 
     //Timing and inserting a test string into the middle of the vector
-    start = high_resolution_clock::now();
+    auto start = high_resolution_clock::now();
 
     vectCode.insert(vectCode.begin() + vectCode.size() / 2, insert_str);
 
-    end = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(end - start);
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(end - start);
 
     durVect = duration.count();
 
@@ -208,22 +212,29 @@ int main() {
     cout << right << setw(8) << "Insert:" << setw(8) <<
     durVect << setw(8) << durList << setw(8) << durSet << endl;
 
+    currentSim++;
+    }
 
 
+    currentSim = 0; //Resetting currentSim for future use.
     //Timing the deleting the middlish value:
 
+
+    while(currentSim < AMNT_SIM){
     //vector:
-    start = high_resolution_clock::now();
+    auto start = high_resolution_clock::now();
 
     vectCode.erase(vectCode.begin() + SZ_CODES/2);
 
-    end = high_resolution_clock::now();
-    duration = duration_cast<microseconds>(end - start);
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(end - start);
 
     durVect = duration.count();
 
 
     //List:
+    auto itList = listCode.begin();
+    advance(itList, SZ_CODES/2);
     start = high_resolution_clock::now();
 
     listCode.erase(itList);
@@ -254,6 +265,8 @@ int main() {
     cout << right << setw(8) << "Delete:" << setw(8) << durVect 
     << setw(8) << durList << setw(8) << durSet << endl;
 
+    currentSim++;
+    }
 
     //Clearing all the operations:
     vectCode.clear();
