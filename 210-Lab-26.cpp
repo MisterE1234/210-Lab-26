@@ -15,6 +15,13 @@ using namespace std::chrono;
 
 int SZ_CODES = 20000;
 
+void displayArr(int arr[][2], string race){
+
+        cout <<  right << setw(8) << race << ": " << setw(8) << 
+        arr[0][0] << setw(8) <<arr[1][0]  << setw(8) << arr[2][0]  << endl;
+    
+}
+
 
 int main() {
 
@@ -26,7 +33,7 @@ int main() {
     string fileArr[SZ_CODES];
 
     //Declaring a 3d array one side hold the times for each race, the second side holds the accumulator sums of each operation:
-    int raceTimes[4][4] = {0};
+    int raceTimes[4][2] = {0};
 
 
 
@@ -68,8 +75,8 @@ int main() {
     auto duration = duration_cast<microseconds>(end - start);
 
     //adding the time to the raceTimes array:
-    raceTimes[0][0] += duration.count();
-
+    raceTimes[0][0] = duration.count();
+    raceTimes[0][1] += duration.count();
 
 
     //Reading to the list:
@@ -85,7 +92,10 @@ int main() {
     end = high_resolution_clock::now();
     duration = duration_cast<microseconds>(end - start);
 
-    durList = duration.count();
+    //adding the time to the raceTimes array:
+    raceTimes[1][0] = duration.count();
+    raceTimes[1][1] += duration.count();
+    
 
 
 
@@ -102,7 +112,10 @@ int main() {
     end = high_resolution_clock::now();
     duration = duration_cast<microseconds>(end - start);
 
-    durSet = duration.count();
+    //adding the time to the raceTimes array:
+    raceTimes[2][0] = duration.count();
+    raceTimes[2][1] += duration.count();
+    
 
     
 
@@ -112,7 +125,7 @@ int main() {
 
     //Displaying the times for reading:
     cout <<  right << setw(8) << "Reading:" << setw(8) << 
-    durVect << setw(8) << durList << setw(8) << durSet << endl;
+    raceTimes[0][0] << setw(8) <<raceTimes[1][0]  << setw(8) << raceTimes[2][0]  << endl;
 
     
     
