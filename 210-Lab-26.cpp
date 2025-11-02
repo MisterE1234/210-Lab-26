@@ -25,36 +25,34 @@ int main() {
     string raceNames[4] = {"Reading", "Sorting", "Inserting", "Deleting"};
     int currentSim = 0;
     string tempCode;
+    //IDs for the operations:
     int vectId = 0;
     int listId = 1;
     int setId = 2;
+    //IDs for the races:
     int readId = 0;
     int sortId = 1;
     int insertId = 2;
     int deleteId = 3;
+    //Declaring an array to hold the codes from the file:
     string fileArr[SZ_CODES];
     
-
     //Declaring a 3d array the first side hold the operations, the second side holds the type of race, and the third hold the total time (operation, race, total time):
     int raceTimes[3][4][2] = {0};
     
-
-
-
     //Declaring the different competetors in the race:
     vector<string> vectCode;
     list<string> listCode;
     set<string> setCode;
     
+    //Displaying the header if debug is true:
     if(debug){
-    cout << right << setw(8) << "Operation" << setw(8) 
-    << "Vector" << setw(8) << "List" << setw(8) << "Set" << endl;
+    cout << right << setw(9) << "Operation" << setw(9) 
+    << "Vector" << setw(9) << "List" << setw(9) << "Set" << endl;
     }
 
     //Opening the codes for the race:
     ifstream iFile("codes.txt");
-
-   
 
     //Using a for loop to read the file to the vector:
     for(int i = 0; i < SZ_CODES; i++){
@@ -330,8 +328,8 @@ int main() {
     //Displaying the average times:
 
     cout << "\nNumber of simulations: " << AMNT_SIM << endl;
-    cout << right << setw(8) << "Operation" << setw(8) 
-    << "Vector" << setw(8) << "List" << setw(8) << "Set" << endl;
+    cout << right << setw(9) << "Operation" << setw(9) 
+    << "Vector" << setw(9) << "List" << setw(9) << "Set" << endl;
 
     displayArr(raceTimes, raceNames[0], readId);
     displayArr(raceTimes, raceNames[1], sortId);
@@ -352,12 +350,14 @@ int main() {
 //Returns: nothing
 void displayArr(int arr[][4][2], string race, int raceId){
 
-        cout << setw(8) << race << ": " << setw(8) << 
-        arr[0][raceId][0]<< setw(8) << arr[1][raceId][0]  << setw(8) << arr[2][raceId][0]  << endl;
+        cout << setw(9) << race << ": " << setw(9) << 
+        arr[0][raceId][0]<< setw(9) << arr[1][raceId][0]  << setw(9) << arr[2][raceId][0]  << endl;
     
 }
 
-
+//avgTime() calculates the average time for each operation:
+//Requires: a 3d int array and two int variables.
+//Returns: an int value representing the average time.
 int avgTime(int arr[][4][2], int raceId, int opId){
 
     return (arr[opId][raceId][1]/AMNT_SIM);
