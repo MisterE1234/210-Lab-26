@@ -50,6 +50,7 @@ int main() {
     cout << right << setw(8) << "Operation" << setw(8) 
     << "Vector" << setw(8) << "List" << setw(8) << "Set" << endl;
     }
+
     //Opening the codes for the race:
     ifstream iFile("codes.txt");
 
@@ -120,11 +121,13 @@ int main() {
     duration = duration_cast<microseconds>(end - start);
 
     //adding the time to the raceTimes array:
-   raceTimes[2][0][0] = duration.count();
+    raceTimes[2][0][0] = duration.count();
     raceTimes[2][0][1] += duration.count();
     
     //Displaying the times for reading:
+    if(debug){
     displayArr(raceTimes, raceNames[0], readId);
+    }
 
     currentSim++;
     }
@@ -172,8 +175,11 @@ int main() {
 
     //Displaying the times for sorting:
 
+    if(debug){
     displayArr(raceTimes, raceNames[1], sortId);
-        currentSim++;
+    }
+        
+    currentSim++;
     }
 
     currentSim = 0; //Resetting currentSim for future use.
@@ -234,7 +240,9 @@ int main() {
 
 
     //Displaying the values of the inserting:
+    if(debug){
     displayArr(raceTimes, raceNames[2], insertId);
+    }
 
     currentSim++;
     }
@@ -290,7 +298,9 @@ int main() {
 
 
     //Displaying the times for the Deleting:
+    if(debug){
     displayArr(raceTimes, raceNames[3], deleteId);
+    }
 
     currentSim++;
     }
