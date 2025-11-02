@@ -16,7 +16,7 @@ using namespace std::chrono;
 int SZ_CODES = 20000; int AMNT_SIM = 15;
 
 //Prototype functions:
-void displayArr(int [][2], string );
+void displayArr(int [][4][2], string, int );
 
 
 int main() {
@@ -27,11 +27,15 @@ int main() {
     int durVect;
     int durList;
     int durSet;
+    int readId = 0;
+    int sortId = 1;
+    int insertId = 2;
+    int deleteId = 3;
     string fileArr[SZ_CODES];
     
 
-    //Declaring a 3d array one side hold the times for each race, the second side holds the accumulator sums of each operation:
-    int raceTimes[4][2] = {0};
+    //Declaring a 3d array the first side hold the operations, the second side holds the type of race, and the third hold the total time (operation, race, total time):
+    int raceTimes[3][4][2] = {0};
 
 
 
@@ -75,8 +79,8 @@ int main() {
     auto duration = duration_cast<microseconds>(end - start);
 
     //adding the time to the raceTimes array:
-    raceTimes[0][0] = duration.count();
-    raceTimes[0][1] += duration.count();
+    raceTimes[0][0][0] = duration.count();
+    raceTimes[0][0][1] += duration.count();
 
 
     //Reading to the list:
@@ -93,8 +97,8 @@ int main() {
     duration = duration_cast<microseconds>(end - start);
 
     //adding the time to the raceTimes array:
-    raceTimes[1][0] = duration.count();
-    raceTimes[1][1] += duration.count();
+    raceTimes[1][0][0] = duration.count();
+    raceTimes[1][0][1] += duration.count();
     
 
 
@@ -113,11 +117,11 @@ int main() {
     duration = duration_cast<microseconds>(end - start);
 
     //adding the time to the raceTimes array:
-    raceTimes[2][0] = duration.count();
-    raceTimes[2][1] += duration.count();
+   raceTimes[2][0][0] = duration.count();
+    raceTimes[2][0][1] += duration.count();
     
     //Displaying the times for reading:
-    displayArr(raceTimes, raceNames[0]);
+    displayArr(raceTimes, raceNames[0], readId);
 
     currentSim++;
     }
