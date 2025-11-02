@@ -139,7 +139,9 @@ int main() {
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(end - start);
 
-    durVect = duration.count();
+    //adding the time to the raceTimes array:
+    raceTimes[0][1][0] = duration.count();
+    raceTimes[0][1][1] += duration.count();
 
 
 
@@ -151,18 +153,23 @@ int main() {
     end = high_resolution_clock::now();
     duration = duration_cast<microseconds>(end - start);
 
-    durList = duration.count();
+    //adding the time to the raceTimes array:
+    raceTimes[1][1][0] = duration.count();
+    raceTimes[1][1][1] += duration.count();
+   
 
 
 
     //Sorting the set:
 
-    durSet = -1;
+    //adding the time to the raceTimes array:
+    raceTimes[2][1][0] = 0;
+    raceTimes[2][1][1] += 0;
+    
 
     //Displaying the times for sorting:
 
-    cout << right << setw(8) << "Sorting:" << setw(8) <<
-    durVect << setw(8) << durList << setw(8) << durSet << endl;
+    displayArr(raceTimes, raceNames[1], sortId);
         currentSim++;
     }
 
@@ -181,7 +188,10 @@ int main() {
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(end - start);
 
-    durVect = duration.count();
+    //adding the time to the raceTimes array:
+    raceTimes[0][2][0] = duration.count();
+    raceTimes[0][2][1] += duration.count();
+    
 
 
 
@@ -196,7 +206,11 @@ int main() {
     end = high_resolution_clock::now();
     duration = duration_cast<microseconds>(end - start);
 
-    durList = duration.count();
+
+    //adding the time to the raceTimes array:
+    raceTimes[1][2][0] = duration.count();
+    raceTimes[1][2][1] += duration.count();
+    
 
 
 
@@ -209,12 +223,15 @@ int main() {
     end = high_resolution_clock::now();
     duration = duration_cast<microseconds>(end - start);
 
-    durSet = duration.count();
+
+    //adding the time to the raceTimes array:
+    raceTimes[2][2][0] = duration.count();
+    raceTimes[2][2][1] += duration.count();
+    
 
 
     //Displaying the values of the inserting:
-    cout << right << setw(8) << "Insert:" << setw(8) <<
-    durVect << setw(8) << durList << setw(8) << durSet << endl;
+    displayArr(raceTimes, raceNames[2], insertId);
 
     currentSim++;
     }
@@ -233,7 +250,10 @@ int main() {
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(end - start);
 
-    durVect = duration.count();
+    //adding the time to the raceTimes array:
+    raceTimes[0][3][0] = duration.count();
+    raceTimes[0][3][1] += duration.count();
+    
 
 
     //List:
@@ -246,9 +266,9 @@ int main() {
     end = high_resolution_clock::now();
     duration = duration_cast<microseconds>(end - start);
 
-    durList = duration.count();
-
-
+    //adding the time to the raceTimes array:
+    raceTimes[1][3][0] = duration.count();
+    raceTimes[1][3][1] += duration.count();
 
     //Set:
     
@@ -261,13 +281,13 @@ int main() {
     end = high_resolution_clock::now();
     duration = duration_cast<microseconds>(end - start);
 
-    durSet = duration.count();
-
+    //adding the time to the raceTimes array:
+    raceTimes[2][3][0] = duration.count();
+    raceTimes[2][3][1] += duration.count();
 
 
     //Displaying the times for the Deleting:
-    cout << right << setw(8) << "Delete:" << setw(8) << durVect 
-    << setw(8) << durList << setw(8) << durSet << endl;
+    displayArr(raceTimes, raceNames[3], deleteId);
 
     currentSim++;
     }
@@ -280,10 +300,10 @@ int main() {
     return 0;
 }
 
-void displayArr(int arr[][2], string race){
+void displayArr(int arr[][3][2], string race, int raceId){
 
         cout <<  right << setw(8) << race << ": " << setw(8) << 
-        arr[0][0] << setw(8) <<arr[1][0]  << setw(8) << arr[2][0]  << endl;
+        arr[0][raceId][0]<< setw(8) << arr[1][raceId][0]  << setw(8) << arr[2][raceId][0]  << endl;
     
 }
 /* syntax examples:
