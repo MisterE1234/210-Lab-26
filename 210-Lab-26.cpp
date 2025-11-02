@@ -21,8 +21,8 @@ int avgTime(int [][4][2], int , int);
 
 
 int main() {
-
-    string raceNames[5] = {"Reading", "Sorting", "Inserting", "Deleting", "Averages"};
+    bool debug = true;
+    string raceNames[4] = {"Reading", "Sorting", "Inserting", "Deleting"};
     int currentSim = 0;
     string tempCode;
     int vectId = 0;
@@ -46,8 +46,10 @@ int main() {
     list<string> listCode;
     set<string> setCode;
     
+    if(debug){
     cout << right << setw(8) << "Operation" << setw(8) 
     << "Vector" << setw(8) << "List" << setw(8) << "Set" << endl;
+    }
     //Opening the codes for the race:
     ifstream iFile("codes.txt");
 
@@ -316,12 +318,17 @@ int main() {
 
 
     //Displaying the average times:
-    displayArr(raceTimes, raceNames[4], readId);
-    displayArr(raceTimes, raceNames[4], sortId);
-    displayArr(raceTimes, raceNames[4], insertId);
-    displayArr(raceTimes, raceNames[4], deleteId);
 
-    
+    cout << "\nAverages:\n";
+    cout << right << setw(8) << "Operation" << setw(8) 
+    << "Vector" << setw(8) << "List" << setw(8) << "Set" << endl;
+
+    displayArr(raceTimes, raceNames[0], readId);
+    displayArr(raceTimes, raceNames[1], sortId);
+    displayArr(raceTimes, raceNames[2], insertId);
+    displayArr(raceTimes, raceNames[3], deleteId);
+
+
     //Clearing all the operations:
     vectCode.clear();
     listCode.clear();
@@ -332,7 +339,7 @@ int main() {
 
 void displayArr(int arr[][4][2], string race, int raceId){
 
-        cout <<  right << setw(8) << race << ": " << setw(8) << 
+        cout << right << setw(8) << race << ": " << setw(8) << 
         arr[0][raceId][0]<< setw(8) << arr[1][raceId][0]  << setw(8) << arr[2][raceId][0]  << endl;
     
 }
