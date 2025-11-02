@@ -21,8 +21,9 @@ int avgTime(int [][4][2], int , int);
 
 
 int main() {
-    bool debug = false;
-    string raceNames[4] = {"Reading", "Sorting", "Inserting", "Deleting"};
+
+    bool debug = false; //Set to true to display all the times for each simulation.
+    string raceNames[4] = {"Reading", "Sorting", "Inserting", "Deleting"}; //Names of each race.
     int currentSim = 0;
     string tempCode;
     //IDs for the operations:
@@ -64,7 +65,8 @@ int main() {
 
     iFile.close();
     
-
+    //Reading the race:
+    //using a while loopp to do multiple simulations:
     while(currentSim < AMNT_SIM){
     //Getting the time for the start of the timer:
     auto start = high_resolution_clock::now();
@@ -135,11 +137,13 @@ int main() {
     
 
     //Sorting:
-    while (currentSim < AMNT_SIM){
+    while (currentSim < AMNT_SIM){ //using the while loop to do multiple simulations:
+    //starting the timer:
     auto start = high_resolution_clock::now();
 
     //Sorting the vector so that the Codes are sorted alphabetically
     sort(vectCode.begin(), vectCode.end());
+    //ending the timer:
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(end - start);
 
@@ -150,10 +154,11 @@ int main() {
 
 
     //Sorting the list:
+    //starting the timer:
     start = high_resolution_clock::now();
-
+    //sort the list
     listCode.sort();
-
+    //ending the timer:
     end = high_resolution_clock::now();
     duration = duration_cast<microseconds>(end - start);
 
@@ -173,7 +178,7 @@ int main() {
 
     //Displaying the times for sorting:
 
-    if(debug){
+    if(debug){// displaying only if debug is true
     displayArr(raceTimes, raceNames[1], sortId);
     }
         
@@ -183,15 +188,15 @@ int main() {
     currentSim = 0; //Resetting currentSim for future use.
 
     //Inserting:
-
+    //using the while loop to do multiple simulations:
     while (currentSim < AMNT_SIM){
     string insert_str = "TESTCODE";
 
     //Timing and inserting a test string into the middle of the vector
     auto start = high_resolution_clock::now();
-
+    //inserting the value:
     vectCode.insert(vectCode.begin() + vectCode.size() / 2, insert_str);
-
+    //ending the timer:
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(end - start);
 
@@ -204,12 +209,12 @@ int main() {
 
     //Timing and inserting a test string into the middle of the list
     start = high_resolution_clock::now();
-
+    //using the iterator to find the middle of the list:
     auto itList = listCode.begin();
     advance(itList, SZ_CODES/2);
-
+    //inserting the value:
     listCode.insert(itList, insert_str);
-
+    //ending the timer:
     end = high_resolution_clock::now();
     duration = duration_cast<microseconds>(end - start);
 
@@ -223,10 +228,11 @@ int main() {
 
     //Timing and inserting a test string into the middle of the set
 
+    //starting the timer:
     start = high_resolution_clock::now();
-
+    //inserting the value:
     setCode.insert(insert_str);
-
+    //ending the timer:
     end = high_resolution_clock::now();
     duration = duration_cast<microseconds>(end - start);
 
@@ -252,10 +258,13 @@ int main() {
 
     while(currentSim < AMNT_SIM){
     //vector:
+    //starting the timer:
     auto start = high_resolution_clock::now();
 
+    //erasing the value at the designated position:
     vectCode.erase(vectCode.begin() + SZ_CODES/2);
 
+    //ending the timer:
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(end - start);
 
@@ -266,12 +275,14 @@ int main() {
 
 
     //List:
-    auto itList = listCode.begin();
+    auto itList = listCode.begin(); //using an iterator to find the right position.
     advance(itList, SZ_CODES/2);
+    //starting the timer:
     start = high_resolution_clock::now();
 
+    //erasing the value atthe designated position:
     listCode.erase(itList);
-
+    //Ending the timer:
     end = high_resolution_clock::now();
     duration = duration_cast<microseconds>(end - start);
 
@@ -280,13 +291,15 @@ int main() {
     raceTimes[1][3][1] += duration.count();
 
     //Set:
-    
+    //starting timer:
     start = high_resolution_clock::now();
     auto itSet = setCode.begin(); //using a iterator to find the right position.
     advance(itSet, SZ_CODES/2);
 
+    //erasing the value at the designated position:
     setCode.erase(itSet);
 
+    //Ending the timer:
     end = high_resolution_clock::now();
     duration = duration_cast<microseconds>(end - start);
 
