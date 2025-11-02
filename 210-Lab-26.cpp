@@ -17,6 +17,7 @@ int SZ_CODES = 20000; int AMNT_SIM = 15;
 
 //Prototype functions:
 void displayArr(int [][4][2], string, int );
+int avgTime(int [][4][2], int , int);
 
 
 int main() {
@@ -24,9 +25,9 @@ int main() {
     string raceNames[4] = {"Reading", "Sorting", "Inserting", "Deleting"};
     int currentSim = 0;
     string tempCode;
-    int durVect;
-    int durList;
-    int durSet;
+    int vectId = 0;
+    int listId = 1;
+    int setId = 2;
     int readId = 0;
     int sortId = 1;
     int insertId = 2;
@@ -36,7 +37,7 @@ int main() {
 
     //Declaring a 3d array the first side hold the operations, the second side holds the type of race, and the third hold the total time (operation, race, total time):
     int raceTimes[3][4][2] = {0};
-
+    
 
 
 
@@ -292,6 +293,11 @@ int main() {
     currentSim++;
     }
 
+    //Getting the average times for each operation:
+    raceTimes[0][4][0] = avgTime(raceTimes, readId, vectId);
+
+
+
     //Clearing all the operations:
     vectCode.clear();
     listCode.clear();
@@ -300,11 +306,17 @@ int main() {
     return 0;
 }
 
-void displayArr(int arr[][3][2], string race, int raceId){
+void displayArr(int arr[][4][2], string race, int raceId){
 
         cout <<  right << setw(8) << race << ": " << setw(8) << 
         arr[0][raceId][0]<< setw(8) << arr[1][raceId][0]  << setw(8) << arr[2][raceId][0]  << endl;
     
+}
+
+
+int avgTime(int arr[][4][2], int raceId, int opId){
+
+    return (arr[opId][raceId][1]/AMNT_SIM);
 }
 /* syntax examples:
 auto start = high_resolution_clock::now()
