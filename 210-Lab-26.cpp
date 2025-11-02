@@ -22,7 +22,7 @@ int avgTime(int [][4][2], int , int);
 
 int main() {
 
-    string raceNames[4] = {"Reading", "Sorting", "Inserting", "Deleting"};
+    string raceNames[5] = {"Reading", "Sorting", "Inserting", "Deleting", "Averages"};
     int currentSim = 0;
     string tempCode;
     int vectId = 0;
@@ -294,10 +294,34 @@ int main() {
     }
 
     //Getting the average times for each operation:
-    raceTimes[0][4][0] = avgTime(raceTimes, readId, vectId);
+    //Reading Averages:
+    raceTimes[0][0][0] = avgTime(raceTimes, readId, vectId);
+    raceTimes[1][0][0] = avgTime(raceTimes, readId, listId);
+    raceTimes[2][0][0] = avgTime(raceTimes, readId, sortId);
+
+    //Sorting Averages:
+    raceTimes[0][1][0] = avgTime(raceTimes, sortId, vectId);
+    raceTimes[1][1][0] = avgTime(raceTimes, sortId, listId);
+    raceTimes[2][1][0] = avgTime(raceTimes, sortId, setId);
+
+    //Inserting Averages:
+    raceTimes[0][2][0] = avgTime(raceTimes, insertId, vectId);
+    raceTimes[1][2][0] = avgTime(raceTimes, insertId, listId);
+    raceTimes[2][2][0] = avgTime(raceTimes, insertId, setId);
+
+    //Deleting Averages:
+    raceTimes[0][3][0] = avgTime(raceTimes, deleteId, vectId);
+    raceTimes[1][3][0] = avgTime(raceTimes, deleteId, listId);
+    raceTimes[2][3][0] = avgTime(raceTimes, deleteId, setId);
 
 
+    //Displaying the average times:
+    displayArr(raceTimes, raceNames[4], readId);
+    displayArr(raceTimes, raceNames[4], sortId);
+    displayArr(raceTimes, raceNames[4], insertId);
+    displayArr(raceTimes, raceNames[4], deleteId);
 
+    
     //Clearing all the operations:
     vectCode.clear();
     listCode.clear();
