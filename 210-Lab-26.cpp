@@ -328,7 +328,7 @@ int main() {
     //Displaying the average times:
 
     cout << "\nNumber of simulations: " << AMNT_SIM << endl;
-    cout << right << setw(10) << "Operation" << right << setw(10) 
+    cout << right << setw(12) << "Operation" << right << setw(10) 
     << "Vector" << right << setw(10) << "List" << right << setw(10) << "Set" << endl;
 
     displayArr(raceTimes, raceNames[0], readId);
@@ -350,7 +350,7 @@ int main() {
 //Returns: nothing
 void displayArr(int arr[][4][2], string race, int raceId){
 
-        cout << setw(8) << race << ": " << setw(10) << 
+        cout << setw(10) << race << ": " << setw(10) << 
         arr[0][raceId][0]<< setw(10) << arr[1][raceId][0]  << setw(10) << arr[2][raceId][0]  << endl;
     
 }
