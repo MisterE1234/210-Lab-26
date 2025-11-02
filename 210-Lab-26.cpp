@@ -21,7 +21,7 @@ int avgTime(int [][4][2], int , int);
 
 
 int main() {
-    bool debug = true;
+    bool debug = false;
     string raceNames[4] = {"Reading", "Sorting", "Inserting", "Deleting"};
     int currentSim = 0;
     string tempCode;
@@ -329,7 +329,7 @@ int main() {
 
     //Displaying the average times:
 
-    cout << "\nAverages:\n";
+    cout << "\nNumber of simulations: " << AMNT_SIM << endl;
     cout << right << setw(8) << "Operation" << setw(8) 
     << "Vector" << setw(8) << "List" << setw(8) << "Set" << endl;
 
@@ -347,9 +347,12 @@ int main() {
     return 0;
 }
 
+//displayArr() Function to display the data in the 3d array:
+//Requires: a 3d int array, a string, and an int.
+//Returns: nothing
 void displayArr(int arr[][4][2], string race, int raceId){
 
-        cout << right << setw(8) << race << ": " << setw(8) << 
+        cout << setw(8) << race << ": " << setw(8) << 
         arr[0][raceId][0]<< setw(8) << arr[1][raceId][0]  << setw(8) << arr[2][raceId][0]  << endl;
     
 }
